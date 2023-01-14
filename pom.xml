@@ -109,6 +109,7 @@
           <version>2.19.1</version>
         </plugin>
 		</plugins>
+		<finalName>hack-project</finalName>
 	</build>
 
 </project>
