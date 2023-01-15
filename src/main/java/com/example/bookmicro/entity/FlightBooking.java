@@ -21,7 +21,6 @@ import jakarta.persistence.OneToOne;
 
 
 @Entity
-
 public class FlightBooking {
 
 	@Id
