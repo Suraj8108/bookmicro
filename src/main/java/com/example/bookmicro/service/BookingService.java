@@ -5,12 +5,14 @@ import com.example.bookmicro.exceptions.BookingException;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.example.bookmicro.entity.Booking;
 import com.example.bookmicro.entity.FlightBooking;
 import com.example.bookmicro.entity.Passenger;
 import com.example.bookmicro.entity.Payment;
 
+@Service
 public interface BookingService {  
 	
 	public ResponseEntity<List<Booking>> getAllBookings() throws BookingException;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.bookmicro.entity.Flight;
 import com.example.bookmicro.exceptions.FlightException;
 
+@Service
 public interface FlightService {
 	
 	

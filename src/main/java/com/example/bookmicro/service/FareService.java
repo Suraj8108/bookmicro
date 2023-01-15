@@ -2,10 +2,12 @@ package com.example.bookmicro.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.bookmicro.entity.Fare;
 import com.example.bookmicro.exceptions.FareException;
 
-
+@Service
 public interface FareService {
 	public Fare addFare(Fare fare) throws FareException   ;
 	
