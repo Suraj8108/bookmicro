@@ -34,7 +34,7 @@ public class UserDetailController {
 		System.out.println("Hello");
 		String emailId = decryptUserDetails.decryptEmailId(request);
 		System.out.println(emailId);
-		return userDetailDAO.findByEmailId(emailId);
+		return userDetailDAO.findUserDetailByEmailId(emailId);
 		
 	}
 	

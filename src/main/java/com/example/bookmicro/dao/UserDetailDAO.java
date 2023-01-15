@@ -8,5 +8,5 @@ import com.example.bookmicro.entity.UserDetail;
 @Repository
 public interface UserDetailDAO extends JpaRepository<UserDetail, Integer>{
 
-	public UserDetail findByEmailId(String emailId);
+	public UserDetail findUserDetailByEmailId(String emailId);
 }

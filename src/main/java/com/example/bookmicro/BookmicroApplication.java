@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication(scanBasePackages = {"com.example.bookmicro.controller", 
 		"com.example.bookmicro.config", "com.example.bookmicro.dto", "com.example.bookmicro.helper"
 		,"com.example.bookmicro.service", "com.example.bookmicro.serviceImpl"})
-@EnableJpaRepositories({"com.example.bookmicro.dao"})
+@EnableJpaRepositories(basePackages = {"com.example.bookmicro.dao"})
 @EntityScan(basePackages = {"com.example.bookmicro.entity"})
 public class BookmicroApplication {
 

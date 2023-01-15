@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		
-		UserDetail user = userDetailDao.findByEmailId(username);
+		UserDetail user = userDetailDao.findUserDetailByEmailId(username);
 		
 		if(user != null) {
 			return new User(user.getEmailId(), user.getPassword(), new ArrayList<>());
