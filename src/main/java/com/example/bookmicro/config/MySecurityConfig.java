@@ -61,7 +61,6 @@ public class MySecurityConfig{
 		// TODO Auto-generated method stub
 		http
 			.csrf().disable()
-			.cors().disable()
 			.authorizeHttpRequests()
 			.requestMatchers(AUTH_WHITELIST).permitAll()
 			.anyRequest().authenticated()
