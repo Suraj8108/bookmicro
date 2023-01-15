@@ -16,7 +16,7 @@ public class Route {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int routeId;
+	private Integer routeId;
 	
 	@OneToOne(mappedBy = "route")
 	private Flight flight;
@@ -52,7 +52,7 @@ public class Route {
 	}
 
 
-	public int getRouteId() {
+	public Integer getRouteId() {
 		return routeId;
 	}
 

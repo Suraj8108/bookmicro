@@ -14,7 +14,7 @@ public class Passenger {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int passengerId;
+	private Integer passengerId;
 	
 	private String firstName;
 	
@@ -47,7 +47,7 @@ public class Passenger {
 		this.booking = booking;
 	}
 
-	public int getPassengerId() {
+	public Integer getPassengerId() {
 		return passengerId;
 	}
 

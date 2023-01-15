@@ -13,7 +13,7 @@ public class Payment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int paymentId;
+	private Integer paymentId;
 	
 	private String paymentNo;
 	
@@ -30,7 +30,7 @@ public class Payment {
     
 	
 	
-	public Payment(int paymentId, String paymentNo, String paymentMode, String paymentStatus, LocalDateTime paymentDate) {
+	public Payment(Integer paymentId, String paymentNo, String paymentMode, String paymentStatus, LocalDateTime paymentDate) {
 		super();
 		this.paymentId = paymentId;
 		this.paymentNo = paymentNo;
@@ -40,11 +40,11 @@ public class Payment {
 		
 	}
 
-	public int getPaymentId() {
+	public Integer getPaymentId() {
 		return paymentId;
 	}
 
-	public void setPaymentId(int paymentId) {
+	public void setPaymentId(Integer paymentId) {
 		this.paymentId = paymentId;
 	}
 

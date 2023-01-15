@@ -23,7 +23,7 @@ public class Flight {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int flightId;	
+	private Integer flightId;	
 	private int flightNo;
 	
 	private int businessFare;
@@ -73,7 +73,7 @@ public class Flight {
 
 
 
-	public int getFlightId() {
+	public Integer getFlightId() {
 		return flightId;
 	}
 

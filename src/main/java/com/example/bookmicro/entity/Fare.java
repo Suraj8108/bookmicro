@@ -19,7 +19,7 @@ import jakarta.persistence.ManyToOne;
 public class Fare {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int fareId;
+	private Integer fareId;
 	///////
 	/*
 	 * @ManyToOne
@@ -53,7 +53,7 @@ public class Fare {
 
 
 
-	public int getFareId() {
+	public Integer getFareId() {
 		return fareId;
 	}
 

@@ -26,7 +26,7 @@ public class FlightBooking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 	
 	private OffsetDateTime departureDateTime;
 	
@@ -57,7 +57,7 @@ public class FlightBooking {
 		this.booking = booking;
 		this.fare = fare;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	

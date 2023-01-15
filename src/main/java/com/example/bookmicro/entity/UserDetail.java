@@ -11,7 +11,7 @@ public class UserDetail {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int userId;
+	private Integer userId;
 	
 	private String firstName;
 	
@@ -42,7 +42,7 @@ public class UserDetail {
 		super();
 	}
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
