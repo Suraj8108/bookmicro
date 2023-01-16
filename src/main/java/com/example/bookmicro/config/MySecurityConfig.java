@@ -3,12 +3,14 @@ package com.example.bookmicro.config;
 
 import java.util.Arrays;
 
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -61,12 +63,14 @@ public class MySecurityConfig{
 		// TODO Auto-generated method stub
 		http
 			.csrf().disable()
+//			.cors().disable()
 			.authorizeHttpRequests()
 			.requestMatchers(AUTH_WHITELIST).permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
+		http.cors(Customizer.withDefaults());
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();
@@ -77,6 +81,7 @@ public class MySecurityConfig{
 //		// TODO Auto-generated method stub
 //		auth.userDetailsService(customUserDetailsService);
 //	}
+	
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -95,4 +100,18 @@ public class MySecurityConfig{
 	    	.userDetailsService(customUserDetailsService).and()
 	      .build();
 	}
+	
+//	@Bean
+//	CorsConfigurationSource corsConfigurationSource() {
+//
+//	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//	    CorsConfiguration config = new CorsConfiguration();
+//	    source.registerCorsConfiguration("/**", config.applyPermitDefaultValues());
+//	    //allow Authorization to be exposed
+//	    config.setExposedHeaders(Arrays.asList("Authorization"));
+//
+//	    return source;
+//	}
+	
+	
 }

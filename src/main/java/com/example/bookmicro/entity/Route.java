@@ -2,6 +2,8 @@ package com.example.bookmicro.entity;
 
 import java.time.OffsetTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ public class Route {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer routeId;
 	
+	@JsonBackReference
 	@OneToOne(mappedBy = "route")
 	private Flight flight;
 	

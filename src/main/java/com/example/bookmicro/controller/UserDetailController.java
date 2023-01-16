@@ -16,6 +16,7 @@ import com.example.bookmicro.helper.JwtUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+@CrossOrigin
 @RestController
 @RequestMapping("user")
 public class UserDetailController {
@@ -29,7 +30,7 @@ public class UserDetailController {
 	@Autowired
 	DecryptUserDetails decryptUserDetails;
 	
-	@GetMapping("/getMyDetails")
+	@PostMapping("/getMyDetails")
 	public UserDetail myDetails(HttpServletRequest request ) {
 		System.out.println("Hello");
 		String emailId = decryptUserDetails.decryptEmailId(request);
