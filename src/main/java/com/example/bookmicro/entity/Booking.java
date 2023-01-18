@@ -58,6 +58,10 @@ public class Booking {
 		this.payment = payment;
 		this.passenger = passenger;
 	}
+	
+	public Booking() {
+		super();
+	}
 
 	public Integer getBookingId() {
 		return bookingId;
