@@ -30,6 +30,8 @@ public class Payment {
     
 	
 	
+	
+	
 	public Payment(Integer paymentId, String paymentNo, String paymentMode, String paymentStatus, LocalDateTime paymentDate) {
 		super();
 		this.paymentId = paymentId;
@@ -39,6 +41,10 @@ public class Payment {
 		this.paymentDate = paymentDate;
 		
 	}
+
+	public Payment() {
+	super();
+}
 
 	public Integer getPaymentId() {
 		return paymentId;

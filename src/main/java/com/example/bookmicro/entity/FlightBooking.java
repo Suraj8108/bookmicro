@@ -46,6 +46,10 @@ public class FlightBooking {
 	@JoinColumn(name="fare_id")
 	private Fare fare;
 	///////
+	public FlightBooking() {
+		super();
+	}
+	
 	public FlightBooking(OffsetDateTime departureDateTime, OffsetDateTime arrivalDateTime, long totalTime,
 			Flight flight, Set<Booking> booking, Fare fare) {
 		super();
@@ -96,8 +100,6 @@ public class FlightBooking {
 	public void setFare(Fare fare) {
 		this.fare = fare;
 	}
-	public FlightBooking() {
-		super();
-	}
+	
 	
 }

@@ -46,6 +46,14 @@ public class Passenger {
 		this.seatNo = seatNo;
 		this.booking = booking;
 	}
+	
+	
+
+	public Passenger() {
+		super();
+	}
+
+
 
 	public Integer getPassengerId() {
 		return passengerId;
