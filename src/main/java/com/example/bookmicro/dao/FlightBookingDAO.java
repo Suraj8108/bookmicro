@@ -8,4 +8,5 @@ import com.example.bookmicro.entity.FlightBooking;
 @Repository
 public interface FlightBookingDAO extends JpaRepository<FlightBooking, Integer>{
 
+	
 }

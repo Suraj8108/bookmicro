@@ -1,5 +1,7 @@
 package com.example.bookmicro.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.bookmicro.dao.FlightBookingDAO;
+import com.example.bookmicro.dto.FlightDetailsDto;
 import com.example.bookmicro.entity.Booking;
 import com.example.bookmicro.entity.FlightBooking;
 import com.example.bookmicro.exceptions.BookableFlightsException;
@@ -72,5 +75,77 @@ public class IFlightBookingService implements FlightBookingService {
 		flightBookingDao.deleteById(id);
 		return "Bookable Flight Deleted";
 	}
+
+	@Override
+	public ResponseEntity<List<FlightDetailsDto>> getSearchFlights() {
+		// TODO Auto-generated method stub
+		List<FlightBooking> flights = flightBookingDao.findAll();
+		List<FlightDetailsDto> flightDetails = new ArrayList<>();
+		
+		for(FlightBooking fbook : flights) {
+			FlightDetailsDto fd = new FlightDetailsDto();
+			
+			fd.setFlightNo(fbook.getFlight().getFlightNo());
+			fd.setFlightWeekDays(fbook.getFlight().getFlightWeekDays());
+			fd.setRoute(fbook.getFlight().getRoute());
+			fd.setFare(fbook.getFare());
+			fd.setDepartureDateTime(fbook.getDepartureDateTime());
+			fd.setArrivalDateTime(fbook.getArrivalDateTime());
+			fd.setTotalTime(fbook.getTotalTime());
+			
+			int ecoSeats = 160;
+			int busSeats = 20;
+			for(Booking booking : fbook.getBooking()) {
+				if(booking.getSeatClass().equals("economy")) {
+					ecoSeats -= booking.getPassenger().size();
+				}
+				else {
+					busSeats -= booking.getPassenger().size();
+				}
+			}
+			fd.setEcoSeatAvailable(ecoSeats);
+			fd.setBusSeatAvailable(busSeats);
+			
+			flightDetails.add(fd);
+			
+		}
+		//System.out.println(flights);
+		
+		return new ResponseEntity<>(flightDetails, HttpStatus.OK);
+	}
+	
+	@Override
+	public Set<String> getSearchFlightByDepartureAirport(String airportName) {
+		// TODO Auto-generated method stub
+		List<FlightBooking> flights = flightBookingDao.findAll();
+		Set<String> arrivalAirport = new HashSet<>();
+		
+		for(FlightBooking fbook : flights) {
+			String departureAirport = fbook.getFlight().getRoute().getDepartureAirport();
+			if(departureAirport.toLowerCase().equals(airportName.toLowerCase())) {
+				arrivalAirport.add(fbook.getFlight().getRoute().getArrivalAirport());
+			}
+		}
+		return arrivalAirport;
+	}
+
+	@Override
+	public Set<String> getSearchFlightByArrivalAirport(String airportName) {
+		// TODO Auto-generated method stub
+		List<FlightBooking> flights = flightBookingDao.findAll();
+		Set<String> departureAirport = new HashSet<>();
+		
+		for(FlightBooking fbook : flights) {
+			String arrivalAirport = fbook.getFlight().getRoute().getArrivalAirport();
+			if(arrivalAirport.toLowerCase().equals(airportName.toLowerCase())) {
+				departureAirport.add(fbook.getFlight().getRoute().getDepartureAirport());
+			}
+		}
+		
+		return departureAirport;
+		
+	}
+	
+	
 
 }

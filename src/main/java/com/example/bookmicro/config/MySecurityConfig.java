@@ -55,7 +55,8 @@ public class MySecurityConfig{
             "/token",
             "/user/signUp",
             "/addProfile",
-            "/flight/*"
+            "/flight/**",
+            "/flightBooking/**"
     };
 	
 	@Bean

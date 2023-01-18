@@ -66,9 +66,6 @@ public class UserDetailDto {
 	public void setLoyalty(long loyalty) {
 		this.loyalty = loyalty;
 	}
-
-	
-
 	
 	
 }

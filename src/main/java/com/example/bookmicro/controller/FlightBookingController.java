@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bookmicro.dao.FlightBookingDAO;
+import com.example.bookmicro.dto.FlightDetailsDto;
 import com.example.bookmicro.entity.Booking;
 import com.example.bookmicro.entity.FlightBooking;
 import com.example.bookmicro.exceptions.BookableFlightsException;
@@ -52,5 +53,29 @@ public class FlightBookingController {
 	public String deleteFlightBookingById(@PathVariable("id") int id) {
 		return fbs.deleteBookableFlightById(id);
 	}     
+	
+	@GetMapping("/getSearchFlights")
+	public ResponseEntity<List<FlightDetailsDto>> getSearchFlights() {
+		
+		return fbs.getSearchFlights();
+		
+	}
+	
+	//THis gets all the flight that has departure Airport as given in path Variable
+	@GetMapping("/getSearchFlightsByDeparture/{departureAirport}")
+	public ResponseEntity<Set<String>> getSearchFlightsDeparture(@PathVariable String departureAirport) {
+		
+		return new ResponseEntity(fbs.getSearchFlightByDepartureAirport(departureAirport), HttpStatus.OK);
+		
+	}
+	
+	
+	//THis gets all the flight that has Arrival Airport as given in path Variable
+	@GetMapping("/getSearchFlightsByArrival/{arrivalAirport}")
+	public ResponseEntity<Set<String>> getSearchFlightsArrival(@PathVariable String arrivalAirport) {
+		
+		return new ResponseEntity(fbs.getSearchFlightByArrivalAirport(arrivalAirport), HttpStatus.OK);
+		
+	}
 	
 } 

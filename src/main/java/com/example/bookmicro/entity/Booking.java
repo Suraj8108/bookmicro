@@ -31,6 +31,7 @@ public class Booking {
 	
 	private LocalDateTime bookingDate;
 	
+	//Either business or economy
 	private String seatClass;
 	
 	@JsonBackReference
