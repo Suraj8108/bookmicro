@@ -15,6 +15,7 @@ import com.example.bookmicro.dto.FlightDetailsDto;
 import com.example.bookmicro.entity.Booking;
 import com.example.bookmicro.entity.FlightBooking;
 import com.example.bookmicro.exceptions.BookableFlightsException;
+import com.example.bookmicro.service.FareService;
 import com.example.bookmicro.service.FlightBookingService;
 
 @Service
@@ -22,13 +23,20 @@ public class IFlightBookingService implements FlightBookingService {
 	
 	@Autowired
 	FlightBookingDAO flightBookingDao;
+	
+	@Autowired
+	FareService fs;
 
 	@Override
 	public ResponseEntity<List<FlightBooking>> getBookableFlights() throws BookableFlightsException {
 		List<FlightBooking> flights = flightBookingDao.findAll();
 		
-		System.out.println(flights);
-		
+		flights.stream().forEach((k) -> {
+            int fareId = k.getFare().getFareId();
+            k.getFare().setbFare( fs.getFare(fareId, 1, "business"));
+            k.getFare().seteFare( fs.getFare(fareId, 1, "economy"));
+//            flightBookingDao.save(k);
+        });
 		return new ResponseEntity<>(flights, HttpStatus.ACCEPTED);
 		
 	}
@@ -93,7 +101,7 @@ public class IFlightBookingService implements FlightBookingService {
 			fd.setArrivalDateTime(fbook.getArrivalDateTime());
 			fd.setTotalTime(fbook.getTotalTime());
 			
-			int ecoSeats = 160;
+			int ecoSeats = 150;
 			int busSeats = 20;
 			for(Booking booking : fbook.getBooking()) {
 				if(booking.getSeatClass().equals("economy")) {
@@ -106,7 +114,9 @@ public class IFlightBookingService implements FlightBookingService {
 			fd.setEcoSeatAvailable(ecoSeats);
 			fd.setBusSeatAvailable(busSeats);
 			
-			flightDetails.add(fd);
+			if(ecoSeats >0 || busSeats > 0) {
+				flightDetails.add(fd);
+			}
 			
 		}
 		//System.out.println(flights);

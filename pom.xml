@@ -85,7 +85,6 @@
 	    <version>3.0.0</version>
 	</dependency>
 
-	
 	<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
 	<dependency>
     <groupId>io.springfox</groupId>
@@ -93,6 +92,13 @@
     <version>3.0.0</version>
 </dependency>
 
+
+	<!-- https://mvnrepository.com/artifact/com.razorpay/razorpay-java -->
+<dependency>
+    <groupId>com.razorpay</groupId>
+    <artifactId>razorpay-java</artifactId>
+    <version>1.3.9</version>
+</dependency>
 
 
 	</dependencies>
