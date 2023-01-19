@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.bookmicro.dao.BookingDAO;
@@ -66,8 +67,8 @@ public class BookingController {
 		
 	}
 	
-	@GetMapping("/get/{pnr}")
-	public Booking getBookingByPnr(@RequestBody String pnr) throws BookingException{
+	@PostMapping("/getByPnr")
+	public Booking getBookingByPnr(@RequestParam String pnr) throws BookingException{
 		return bs.getBookingByPnr(pnr);
 		
 	}

@@ -58,7 +58,9 @@ public class MySecurityConfig{
             "/flight/**",
             "/flightBooking/**",
             "/order/**",
-            "/book/**"
+            "/book/**",
+            "/fare/**"
+            
     };
 	
 	@Bean
