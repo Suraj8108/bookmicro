@@ -48,6 +48,22 @@ public class Passenger {
 	}
 	
 	
+	
+
+	public Passenger(Integer passengerId, String firstName, String lastName, String gender, long phoneNumber,
+			String emailId, Booking booking) {
+		super();
+		this.passengerId = passengerId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.emailId = emailId;
+		this.booking = booking;
+	}
+
+
+
 
 	public Passenger() {
 		super();
