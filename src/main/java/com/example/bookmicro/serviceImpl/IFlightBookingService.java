@@ -93,6 +93,7 @@ public class IFlightBookingService implements FlightBookingService {
 		for(FlightBooking fbook : flights) {
 			FlightDetailsDto fd = new FlightDetailsDto();
 			
+			fd.setFlightBookingId(fbook.getId());
 			fd.setFlightNo(fbook.getFlight().getFlightNo());
 			fd.setFlightWeekDays(fbook.getFlight().getFlightWeekDays());
 			fd.setRoute(fbook.getFlight().getRoute());

@@ -18,6 +18,8 @@ import jakarta.persistence.OneToOne;
 
 public class FlightDetailsDto {
 
+	private int flightBookingId;
+	
 	private int flightNo;
 	
 	private Set<String> flightWeekDays;
@@ -40,10 +42,12 @@ public class FlightDetailsDto {
 		super();
 	}
 
-	public FlightDetailsDto(int flightNo, Set<String> flightWeekDays, OffsetDateTime departureDateTime,
-			OffsetDateTime arrivalDateTime, long totalTime, Route route, Fare fare, int busSeatAvailable,
-			int ecoSeatAvailable) {
+	
+	public FlightDetailsDto(int flightBookingId, int flightNo, Set<String> flightWeekDays,
+			OffsetDateTime departureDateTime, OffsetDateTime arrivalDateTime, long totalTime, Route route, Fare fare,
+			int busSeatAvailable, int ecoSeatAvailable) {
 		super();
+		this.flightBookingId = flightBookingId;
 		this.flightNo = flightNo;
 		this.flightWeekDays = flightWeekDays;
 		this.departureDateTime = departureDateTime;
@@ -56,6 +60,13 @@ public class FlightDetailsDto {
 	}
 
 
+	public int getFlightBookingId() {
+		return flightBookingId;
+	}
+
+	public void setFlightBookingId(int flightBookingId) {
+		this.flightBookingId = flightBookingId;
+	}
 
 	public int getFlightNo() {
 		return flightNo;
@@ -71,14 +82,6 @@ public class FlightDetailsDto {
 
 	public void setFlightWeekDays(Set<String> flightWeekDays) {
 		this.flightWeekDays = flightWeekDays;
-	}
-
-	public Fare getFare() {
-		return fare;
-	}
-
-	public void setFare(Fare fare) {
-		this.fare = fare;
 	}
 
 	public OffsetDateTime getDepartureDateTime() {
@@ -113,6 +116,14 @@ public class FlightDetailsDto {
 		this.route = route;
 	}
 
+	public Fare getFare() {
+		return fare;
+	}
+
+	public void setFare(Fare fare) {
+		this.fare = fare;
+	}
+
 	public int getBusSeatAvailable() {
 		return busSeatAvailable;
 	}
@@ -128,6 +139,8 @@ public class FlightDetailsDto {
 	public void setEcoSeatAvailable(int ecoSeatAvailable) {
 		this.ecoSeatAvailable = ecoSeatAvailable;
 	}
+
+	
 
 
 	
