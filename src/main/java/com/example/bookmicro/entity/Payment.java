@@ -13,11 +13,13 @@ public class Payment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer paymentId;
+	private Integer paymentNo;
 	
-	private String paymentNo;
+	private String paymentId;
 	
-	private String paymentMode;
+	private String paymentOrderId;
+	
+	private String razorpaySignature;
 	
 	private String paymentStatus;
 	
@@ -27,47 +29,46 @@ public class Payment {
 //	private Integer seatPayment = -1;
 //	
 //	private Integer seatPaymentID = -1;
-    
 	
-	
-	
-	
-	public Payment(Integer paymentId, String paymentNo, String paymentMode, String paymentStatus, LocalDateTime paymentDate) {
+
+	public Payment(Integer paymentNo, String paymentId, String paymentOrderId, String razorpaySignature,
+			String paymentStatus, LocalDateTime paymentDate) {
 		super();
-		this.paymentId = paymentId;
 		this.paymentNo = paymentNo;
-		this.paymentMode = paymentMode;
+		this.paymentId = paymentId;
+		this.paymentOrderId = paymentOrderId;
+		this.razorpaySignature = razorpaySignature;
 		this.paymentStatus = paymentStatus;
 		this.paymentDate = paymentDate;
-		
 	}
 
+	
 	public Payment() {
-	super();
-}
-
-	public Integer getPaymentId() {
-		return paymentId;
+		super();
 	}
 
-	public void setPaymentId(Integer paymentId) {
-		this.paymentId = paymentId;
-	}
-
-	public String getPaymentNo() {
+	public Integer getPaymentNo() {
 		return paymentNo;
 	}
 
-	public void setPaymentNo(String paymentNo) {
+	public void setPaymentNo(Integer paymentNo) {
 		this.paymentNo = paymentNo;
 	}
 
-	public String getPaymentMode() {
-		return paymentMode;
+	public String getPaymentOrderId() {
+		return paymentOrderId;
 	}
 
-	public void setPaymentMode(String paymentMode) {
-		this.paymentMode = paymentMode;
+	public void setPaymentOrderId(String paymentOrderId) {
+		this.paymentOrderId = paymentOrderId;
+	}
+
+	public String getRazorpaySignature() {
+		return razorpaySignature;
+	}
+
+	public void setRazorpaySignature(String razorpaySignature) {
+		this.razorpaySignature = razorpaySignature;
 	}
 
 	public String getPaymentStatus() {
@@ -86,23 +87,16 @@ public class Payment {
 		this.paymentDate = paymentDate;
 	}
 
-//	public Integer getSeatPayment() {
-//		return seatPayment;
-//	}
-//
-//	public void setSeatPayment(Integer seatPayment) {
-//		this.seatPayment = seatPayment;
-//	}
-//
-//	public Integer getSeatPaymentID() {
-//		return seatPaymentID;
-//	}
-//
-//	public void setSeatPaymentID(Integer seatPaymentID) {
-//		this.seatPaymentID = seatPaymentID;
-//	}
-//	
-//	
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
+	}
+
+
+	public String getPaymentId() {
+		return paymentId;
+	}
+	
+	
 	
 
 	

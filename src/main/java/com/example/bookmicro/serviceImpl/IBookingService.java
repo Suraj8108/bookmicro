@@ -105,12 +105,14 @@ public class IBookingService implements BookingService{
 		if(b==null) {
 			throw new BookingException("No booking avalaible");
 		}
-		b.getPayment().setPaymentDate(payment.getPaymentDate());
-		b.getPayment().setPaymentId(payment.getPaymentId());
-	
-		b.getPayment().setPaymentMode(payment.getPaymentMode());
+		
 		b.getPayment().setPaymentNo(payment.getPaymentNo());
+		b.getPayment().setPaymentId(payment.getPaymentId());
+		b.getPayment().setPaymentOrderId(payment.getPaymentOrderId());
+		b.getPayment().setRazorpaySignature(payment.getRazorpaySignature());
 		b.getPayment().setPaymentStatus(payment.getPaymentStatus());
+		b.getPayment().setPaymentDate(payment.getPaymentDate());
+		
 		
 		bookingDao.save(b);
 		
