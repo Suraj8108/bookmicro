@@ -1,5 +1,6 @@
 package com.example.bookmicro.controller;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -75,6 +76,15 @@ public class FlightBookingController {
 	public ResponseEntity<Set<String>> getSearchFlightsArrival(@PathVariable String arrivalAirport) {
 		
 		return new ResponseEntity(fbs.getSearchFlightByArrivalAirport(arrivalAirport), HttpStatus.OK);
+		
+	}
+	
+	//This will get the Flights based on the Departure Date
+	@PostMapping("/getFlightsByDepartureDate/{departureDate}")
+	public ResponseEntity<List<FlightBooking>> getFlightsByDepartureDate(@PathVariable OffsetDateTime departureDate)
+	{
+		
+		return new ResponseEntity<List<FlightBooking>>(fbs.getFlightsByDepartureDate(departureDate), HttpStatus.OK);
 		
 	}
 	

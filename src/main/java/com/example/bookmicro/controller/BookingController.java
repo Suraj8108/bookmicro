@@ -73,5 +73,11 @@ public class BookingController {
 		
 	}
 	
+	@GetMapping("/getFlightByBookId/{bookingId}")
+	public FlightBooking getFlightDetailsByBookingId(@PathVariable int bookingId) {
+		Booking booking = bs.getBookingById(bookingId);
+		return booking.getFlightBooking();
+	}
+	
 	
 }

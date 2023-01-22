@@ -1,5 +1,6 @@
 package com.example.bookmicro.service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +28,8 @@ public interface FlightBookingService {
 	public Set<String> getSearchFlightByDepartureAirport(String airportName);
 	
 	public Set<String> getSearchFlightByArrivalAirport(String airportName);
+	
+	public List<FlightBooking> getFlightsByDepartureDate(OffsetDateTime departureDate);
 	
 
 }

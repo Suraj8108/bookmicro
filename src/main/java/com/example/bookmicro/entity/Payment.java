@@ -25,14 +25,14 @@ public class Payment {
 	
 	private LocalDateTime paymentDate;
 	
+	private Integer amount;
 	
 //	private Integer seatPayment = -1;
 //	
 //	private Integer seatPaymentID = -1;
-	
 
 	public Payment(Integer paymentNo, String paymentId, String paymentOrderId, String razorpaySignature,
-			String paymentStatus, LocalDateTime paymentDate) {
+			String paymentStatus, LocalDateTime paymentDate, Integer amount) {
 		super();
 		this.paymentNo = paymentNo;
 		this.paymentId = paymentId;
@@ -40,9 +40,9 @@ public class Payment {
 		this.razorpaySignature = razorpaySignature;
 		this.paymentStatus = paymentStatus;
 		this.paymentDate = paymentDate;
+		this.amount = amount;
 	}
 
-	
 	public Payment() {
 		super();
 	}
@@ -53,6 +53,14 @@ public class Payment {
 
 	public void setPaymentNo(Integer paymentNo) {
 		this.paymentNo = paymentNo;
+	}
+
+	public String getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
 	}
 
 	public String getPaymentOrderId() {
@@ -87,14 +95,20 @@ public class Payment {
 		this.paymentDate = paymentDate;
 	}
 
-	public void setPaymentId(String paymentId) {
-		this.paymentId = paymentId;
+	public Integer getAmount() {
+		return amount;
 	}
 
-
-	public String getPaymentId() {
-		return paymentId;
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
+	
+	
+	
+	
+	
+
+	
 	
 	
 	

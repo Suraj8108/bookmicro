@@ -112,6 +112,7 @@ public class IBookingService implements BookingService{
 		b.getPayment().setRazorpaySignature(payment.getRazorpaySignature());
 		b.getPayment().setPaymentStatus(payment.getPaymentStatus());
 		b.getPayment().setPaymentDate(payment.getPaymentDate());
+		b.getPayment().setAmount(payment.getAmount());
 		
 		
 		bookingDao.save(b);
@@ -149,6 +150,14 @@ public class IBookingService implements BookingService{
 		}
 		
 		return b;
+	}
+
+
+	@Override
+	public Booking getBookingById(int id) {
+		// TODO Auto-generated method stub
+		
+		return bookingDao.findById(id).get();
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.example.bookmicro.serviceImpl;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -155,6 +156,13 @@ public class IFlightBookingService implements FlightBookingService {
 		
 		return departureAirport;
 		
+	}
+
+	@Override
+	public List<FlightBooking> getFlightsByDepartureDate(OffsetDateTime departureDate) {
+		// TODO Auto-generated method stub
+		List<FlightBooking> flights = flightBookingDao.findByDepartureDateTime(departureDate);
+		return flights;
 	}
 	
 	

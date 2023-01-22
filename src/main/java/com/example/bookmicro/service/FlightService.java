@@ -19,4 +19,5 @@ public interface FlightService {
 	public Flight updateFlight(Flight updtFlight)throws FlightException;
 	public ResponseEntity<List<Flight>> getFlights() throws FlightException;
 	
+	
 }

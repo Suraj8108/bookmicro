@@ -59,7 +59,8 @@ public class MySecurityConfig{
             "/flightBooking/**",
             "/order/**",
             "/book/**",
-            "/fare/**"
+            "/fare/**",
+            "/checkin/**"
             
     };
 	

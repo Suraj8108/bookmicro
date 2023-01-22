@@ -41,6 +41,10 @@ public class FlightBooking {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "flightBooking")
 	private Set<Booking> booking;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "flightBooking")
+	private Set<Checkin> checkIn;
 	///////
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="fare_id")
@@ -50,16 +54,21 @@ public class FlightBooking {
 		super();
 	}
 	
-	public FlightBooking(OffsetDateTime departureDateTime, OffsetDateTime arrivalDateTime, long totalTime,
-			Flight flight, Set<Booking> booking, Fare fare) {
+	
+	public FlightBooking(Integer id, OffsetDateTime departureDateTime, OffsetDateTime arrivalDateTime, long totalTime,
+			Flight flight, Set<Booking> booking, Set<Checkin> checkIn, Fare fare) {
 		super();
+		this.id = id;
 		this.departureDateTime = departureDateTime;
 		this.arrivalDateTime = arrivalDateTime;
 		this.totalTime = totalTime;
 		this.flight = flight;
 		this.booking = booking;
+		this.checkIn = checkIn;
 		this.fare = fare;
 	}
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -100,6 +109,23 @@ public class FlightBooking {
 	public void setFare(Fare fare) {
 		this.fare = fare;
 	}
+
+
+	public Set<Checkin> getCheckIn() {
+		return checkIn;
+	}
+
+
+	public void setCheckIn(Set<Checkin> checkIn) {
+		this.checkIn = checkIn;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 	
 	
 }
