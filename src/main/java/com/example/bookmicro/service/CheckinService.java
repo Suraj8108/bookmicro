@@ -2,6 +2,7 @@ package com.example.bookmicro.service;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,7 @@ public interface CheckinService {
 	public Checkin addCheckin(Checkin checkin);
 	
 	public Checkin updateCheckinPayment(CheckinSeatsDto checkinDto); 
+	
+	public Set<String> getBookedSeatsByFlightBookingId(int flightBookingId, String seatClass);
 	
 }

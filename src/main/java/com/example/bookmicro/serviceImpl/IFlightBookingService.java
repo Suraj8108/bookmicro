@@ -88,7 +88,8 @@ public class IFlightBookingService implements FlightBookingService {
 	@Override
 	public ResponseEntity<List<FlightDetailsDto>> getSearchFlights() {
 		// TODO Auto-generated method stub
-		List<FlightBooking> flights = flightBookingDao.findAll();
+		//List<FlightBooking> flights = flightBookingDao.findAll();
+		List<FlightBooking> flights = this.getBookableFlights().getBody();
 		List<FlightDetailsDto> flightDetails = new ArrayList<>();
 		
 		for(FlightBooking fbook : flights) {

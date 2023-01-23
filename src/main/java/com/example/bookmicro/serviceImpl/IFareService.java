@@ -1,15 +1,22 @@
 package com.example.bookmicro.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.bookmicro.dao.BookingDAO;
 import com.example.bookmicro.dao.FareRepository;
+import com.example.bookmicro.dao.FlightBookingDAO;
 import com.example.bookmicro.entity.Fare;
+import com.example.bookmicro.entity.FlightBooking;
 import com.example.bookmicro.exceptions.FareException;
+import com.example.bookmicro.service.CheckinService;
 import com.example.bookmicro.service.FareService;
 
 
@@ -23,6 +30,13 @@ public class IFareService implements FareService {
 	}
 	@Autowired
 	private FareRepository fareRepo;
+	
+	@Autowired
+	private BookingDAO bookingDao;
+	
+	@Autowired
+	private FlightBookingDAO flightBookingDAO;
+	
 	@Override
 	public Fare addFare(Fare fare) throws FareException {
 	
@@ -30,6 +44,7 @@ public class IFareService implements FareService {
 		return fareRepo.save(fare);
 	}
 
+	//noOfSeats means that total number of seats that user has choosed
 	@Override
 	public int getFare(int fareId, int noOfSeat, String typeOfSeat) throws FareException {
 		
@@ -42,7 +57,11 @@ public class IFareService implements FareService {
 		// create logic for multiplier 2 based on the number of seats booked
 		/* float multiplier2=1;    if >28 days lowest bound = 1 , else 0.7, max val = 1.5   */
 		double multiplier2 = 1;
-		double percentFull= 90;//will derive this val from total seats booked
+		
+		FlightBooking fbook = flightBookingDAO.findByFareFareId(fareId);
+		int bookedSeatLength = bookingDao.findByFlightBookingIdAndSeatClassIgnoreCase(fbook.getId(), typeOfSeat).size();
+		int totalSeats = typeOfSeat.equalsIgnoreCase("business") ? 20 : 150;
+		double percentFull= (bookedSeatLength / totalSeats) * 100;//will derive this val from total seats booked
 		
 		// code for multiplier 2
 		if(percentFull<10) {
@@ -126,7 +145,9 @@ public class IFareService implements FareService {
 		
 		
 		
-		
+		System.out.println("Businessss" + f.getbFare());
+		System.out.println(multiplier1);
+		System.out.println(multiplier2);
 		
 		
 		
@@ -149,7 +170,7 @@ public class IFareService implements FareService {
 
 	
 	
-	@Override   //to do
+	@Override   //to do seat fare for the economy seats
 	public Integer getSeatFares(Integer[] seats) throws FareException {
 		
 		int sum=0;
@@ -238,6 +259,88 @@ public class IFareService implements FareService {
 	public List<Fare> getAll() throws FareException {
 		// TODO Auto-generated method stub
 		return fareRepo.findAll();
+	}
+
+	
+	public Integer getEconomySeatFare(int seat) {
+		int sum=0;
+			if(seat<0) {
+				throw new FareException("invalid seat");
+			}
+			boolean mid = (seat - 19)%3 == 0;
+			boolean win = ((seat - 21)%6 == 0) ||((seat-26)%6 == 0);
+		
+			
+			if(seat>170 || seat <21) {
+				throw new FareException("invalid seat");
+			}
+			else if (mid) {
+				sum =sum +0;
+			}
+			else if(win) {
+				sum = sum +250;
+			}
+			else {
+				sum = sum +200;
+			}
+		
+		return sum;
+	}
+	
+	public Integer getBusinessSeatFare(int seat) {
+		int sum=0;
+		boolean win = (seat%4 == 1 || seat % 4 == 0);
+		boolean left = seat%4 == 2;
+	
+		
+		if(seat<0 || seat > 21) {
+			throw new FareException("invalid seat");
+		}
+		else if (win) {
+			sum =sum + 400;
+		}
+		else if(left) {
+			sum = sum + 200;
+		}
+		else {
+			sum = sum + 250;
+		}
+	
+		return sum;
+		
+		
+	}
+	
+	//Map of strings
+	@Override
+	public Map<String, Integer> getAllSeatsFare(int fareId) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> allseat = new HashMap<>();
+		for(int i = 1; i <= 20; i++) {
+			int fare = this.getBusinessSeatFare(i);
+			allseat.put("b" + String.valueOf(i), fare);
+		}
+		for(int i = 21; i <= 170; i++) {
+			int fare = this.getEconomySeatFare(i);
+			allseat.put("e"+String.valueOf(i), fare);
+		}
+		
+		return allseat;
+	}
+	
+	public List<Integer> getAllSeatsFareList(int fareId) {
+		// TODO Auto-generated method stub
+		List<Integer> allseat = new ArrayList<>();
+		for(int i = 1; i <= 20; i++) {
+			int fare = this.getBusinessSeatFare(i);
+			allseat.add(fare);
+		}
+		for(int i = 21; i <= 170; i++) {
+			int fare = this.getEconomySeatFare(i);
+			allseat.add(fare);
+		}
+		
+		return allseat;
 	}
 
 	

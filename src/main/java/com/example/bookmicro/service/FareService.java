@@ -1,6 +1,7 @@
 package com.example.bookmicro.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,8 @@ public interface FareService {
 	public void deleteFareById(int fareId)throws FareException;
 	
 	public Fare updateFare(int id,Fare fare)throws FareException;
+	
+	public Map<String, Integer> getAllSeatsFare(int fareId); 
+	
+	public List<Integer> getAllSeatsFareList(int fareId);
 }

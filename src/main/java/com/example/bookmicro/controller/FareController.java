@@ -1,6 +1,7 @@
 package com.example.bookmicro.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,10 +81,16 @@ public class FareController {
 	}
 	
 	
+	@GetMapping("/getAllSeatFares/{fareId}")
+	public Map<String, Integer> getAllSeatsFare(@PathVariable int fareId){
+		return fs.getAllSeatsFare(fareId);
+	}
 	
 	
-	
-	
+	@GetMapping("/listAllSeatFares/{fareId}")
+	public List<Integer> getAllSeatsFareList(@PathVariable int fareId){
+		return fs.getAllSeatsFareList(fareId);
+	}
 	
 	
 	

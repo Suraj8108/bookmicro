@@ -27,6 +27,8 @@ public class Fare {
 	 * @JoinColumn(name="id" , nullable = false) private FlightBooking fb;
 	 */
 	/////////
+	
+	
 	private int flightNo;
 	private int bFare;
 	private int eFare;

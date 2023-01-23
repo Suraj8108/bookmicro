@@ -13,4 +13,7 @@ public interface FlightBookingDAO extends JpaRepository<FlightBooking, Integer>{
 
 	public List<FlightBooking> findByDepartureDateTime(OffsetDateTime departureDateTime);
 	
+	public FlightBooking findByFareFareId(int fareId);
+	
+	
 }
