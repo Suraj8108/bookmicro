@@ -21,6 +21,7 @@ import com.example.bookmicro.dao.RouteDAO;
 import com.example.bookmicro.entity.Fare;
 import com.example.bookmicro.entity.Flight;
 import com.example.bookmicro.entity.FlightBooking;
+import com.example.bookmicro.entity.Route;
 import com.example.bookmicro.exceptions.FlightException;
 import com.example.bookmicro.service.FlightService;
 
@@ -158,6 +159,12 @@ public class IFlightService implements FlightService {
 			throw new FlightException("No Flights in Database");
 		}
 		return new ResponseEntity<List<Flight>>(flights, HttpStatus.ACCEPTED);
+	}
+
+	@Override
+	public List<Route> getAllRoute() {
+		// TODO Auto-generated method stub
+		return routeDao.findAll();
 	}
 
 }

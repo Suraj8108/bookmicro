@@ -71,6 +71,10 @@ public class FlightController {
 		
 	}
 	
+	@GetMapping("/getAllRoute")
+	public List<Route> getAllRoute(){
+		return fs.getAllRoute();
+	}
 	
 	
 

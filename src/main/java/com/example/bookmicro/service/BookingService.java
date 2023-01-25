@@ -34,5 +34,7 @@ public interface BookingService {
 	public Booking getBookingByPnr(String pnr) throws BookingException;
 	
 	public Booking getBookingById(int id);
+	
+	public List<Passenger> getAllPassenger();
 
 }

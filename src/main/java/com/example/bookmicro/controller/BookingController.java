@@ -79,5 +79,10 @@ public class BookingController {
 		return booking.getFlightBooking();
 	}
 	
+	@GetMapping("/getAllPassenger")
+	public List<Passenger> getAllPassengers(){
+		return bs.getAllPassenger();
+	}
+	
 	
 }

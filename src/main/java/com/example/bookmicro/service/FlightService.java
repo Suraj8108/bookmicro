@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.bookmicro.entity.Flight;
+import com.example.bookmicro.entity.Route;
 import com.example.bookmicro.exceptions.FlightException;
 
 @Service
@@ -18,6 +19,7 @@ public interface FlightService {
 	public void deleteFlight(Flight flight);
 	public Flight updateFlight(Flight updtFlight)throws FlightException;
 	public ResponseEntity<List<Flight>> getFlights() throws FlightException;
+	public List<Route> getAllRoute();
 	
 	
 }

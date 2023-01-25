@@ -160,4 +160,11 @@ public class IBookingService implements BookingService{
 		return bookingDao.findById(id).get();
 	}
 
+
+	@Override
+	public List<Passenger> getAllPassenger() {
+		// TODO Auto-generated method stub
+		return passengerDao.findAll();
+	}
+
 }
