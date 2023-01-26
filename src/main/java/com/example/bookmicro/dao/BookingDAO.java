@@ -14,4 +14,7 @@ public interface BookingDAO extends JpaRepository<Booking, Integer>{
 			public Booking findByPnrNo(String pnrNo);
 			
 			public List<Booking> findByFlightBookingIdAndSeatClassIgnoreCase(Integer id, String seatClass);
+			
+			public List<Booking> findByPassengerEmailId(String emailId);
+			
 }

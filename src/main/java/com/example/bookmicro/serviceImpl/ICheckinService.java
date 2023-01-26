@@ -15,6 +15,7 @@ import com.example.bookmicro.dao.BookingDAO;
 import com.example.bookmicro.dao.CheckinDAO;
 import com.example.bookmicro.dao.FlightBookingDAO;
 import com.example.bookmicro.dao.PassengerDAO;
+import com.example.bookmicro.dao.UserDetailDAO;
 import com.example.bookmicro.dto.CheckinDetailsDto;
 import com.example.bookmicro.dto.CheckinSeatsDto;
 import com.example.bookmicro.entity.Booking;
@@ -22,6 +23,7 @@ import com.example.bookmicro.entity.Checkin;
 import com.example.bookmicro.entity.FlightBooking;
 import com.example.bookmicro.entity.Passenger;
 import com.example.bookmicro.entity.PnrRequest;
+import com.example.bookmicro.entity.UserDetail;
 import com.example.bookmicro.service.CheckinService;
 
 @Service
@@ -38,6 +40,9 @@ public class ICheckinService implements CheckinService{
 	
 	@Autowired
 	FlightBookingDAO flightBookingDao;
+	
+	@Autowired
+	UserDetailDAO userDetailDao;
 	
 	public Checkin getCheckinByPnr(String pnrNo) {
 		List<Checkin> allCheckin = checkinDao.findAll();
@@ -158,6 +163,16 @@ public class ICheckinService implements CheckinService{
 		Checkin result = checkinDao.save(checkIn);
 		
 		Booking booking = bookingDao.findById(result.getBooking().getBookingId()).get();
+		
+		//There will be atleast one passenger
+		String contactEmail = booking.getPassenger().get(0).getEmailId();
+		
+		//For now we add rewards by passenger contact number afterwards we will shif the the login
+		UserDetail userDetail = userDetailDao.findUserDetailByEmailId(contactEmail);
+		if(userDetail != null) {
+			userDetail.setLoyalty(userDetail.getLoyalty() + 50);
+			userDetailDao.save(userDetail);
+		}
 		
 		Map<Integer, String> seatPassenger = new HashMap<>();
 		
