@@ -6,18 +6,18 @@ http://ec2-3-110-164-119.ap-south-1.compute.amazonaws.com:9900
 ```
 ## Route
 * [UserDetail](https://github.com/Suraj8108/bookmicro#userDetail)
-* [Booking](https://github.com/Abh3201/FlipXoAPI#user)
-* [Checkin](https://github.com/Abh3201/FlipXoAPI#company)
-* [Fare](https://github.com/Abh3201/FlipXoAPI#file)
-* [Flight](https://github.com/Abh3201/FlipXoAPI#cart)
-* [FlightBooking](https://github.com/Abh3201/FlipXoAPI#order)
-* [JwtRequest](https://github.com/Abh3201/FlipXoAPI#payment)
-* [JwtResponse](https://github.com/Abh3201/FlipXoAPI#sentiment)
-* [OrderRazorPay](https://github.com/Abh3201/FlipXoAPI#sentiment)
-* [Passenger](https://github.com/Abh3201/FlipXoAPI#sentiment)
-* [Payment](https://github.com/Abh3201/FlipXoAPI#sentiment)
-* [PnrRequest](https://github.com/Abh3201/FlipXoAPI#sentiment)
-* [Route](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [Booking](https://github.com/Suraj8108/bookmicro#booking)
+* [Checkin](https://github.com/Suraj8108/bookmicro#checkin)
+* [Fare](https://github.com/Suraj8108/bookmicro#fare)
+* [Flight](https://github.com/Suraj8108/bookmicro#flight)
+* [FlightBooking](https://github.com/Suraj8108/bookmicro#flightBooking)
+* [JwtRequest](https://github.com/Suraj8108/bookmicro#jwtRequest)
+* [JwtResponse](https://github.com/Suraj8108/bookmicro#jwtReponse)
+* [OrderRazorPay](https://github.com/Suraj8108/bookmicro#orderRazorPay)
+* [Passenger](https://github.com/Suraj8108/bookmicro#passenger)
+* [Payment](https://github.com/Suraj8108/bookmicro#payment)
+* [PnrRequest](https://github.com/Suraj8108/bookmicro#pnrRequest)
+* [Route](https://github.com/Suraj8108/bookmicro#route)
 
 
 
