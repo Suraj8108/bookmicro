@@ -186,65 +186,55 @@ POST /company
 | `/addCheckin` |  `{'msg':'Successfully Added Checkin'}` | Add Check-in Details. **Required** - Checkin Model |
 | `/checkInSuccess` |  `{"Checkin":json}` | Return and update Check-in Status. **Required** - Checkin Model |
 
-## File
+## Fare
 
 ```javascript
 File Model
 { 
-    name: {
-        type: String,
+    fareId: {
+        type: Number,
         required: true
     },     
-    companyId: {
-        type: Schema.ObjectId,
+    flightNo: {
+        type: Number,
         required: true
     },
-    type : {
-        type : String, 
+    bFare : {
+        type : Number, 
         required : true
     },
-    link: {
-        type: String,
-        required: true
-    },
-    description :{
-        type: String,
-        required: true
-    },
-    instock:{
+    eFare: {
         type: Number,
         required: true
     },
-    price:{
-        type: Number,
-        required: true
-    },
-    weight:{
-        type: Number,
+    departure :{
+        type: Date,
         required: true
     }
-
 }
 
 ```
 
 ```http
-GET /file
+GET /fare   
 ```
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
-| `/` |  `{"File" : json}` | Return All File |
-| `/type/:type` |  `{"Type" : "TypeName", "File" : json}` | Return file by type |
-| `/id/:id` |  `{"id" : "id", "File" : json}` | Return file by id |
-| `/comid/:comid` | `{"Company Id" : comId , "Product" : json}` | Return files by Company ID |
+| `/getFare/{id}/{seats}/{Class}` |  `{"Fare" : int}` | Return Fare. **Required** - Id, Seats, Class |
+| `/getGst/{total}/{Class}` |  `{"GST" : int}` | Return Total GST. **Required** - Fare, Class |
+| `/getTotal/{total}/{seatFare}/{gst}` |  `{"totalFare" : int}` | Return Total Fare. **Required** - Fare, seatFare, GST |
+| `/get/all` | `{"Fare" : json}` | Return List of Fare |
 | `/gettpyes` | `{"categories" : array({_id: product_name, count:1}) }` | Get the all unique types of the product and the count of that type of product |
+| `/` |  `{"File" : json}` | Return All File |
 
 ```http
 POST /file
 ```
 
+
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
+| `/addfare` |  `{"Fare" : json}` | Add Fare. **Required** - Fare Model |
 | `/upload` |  `{Done}` | Upload File. **Required** - File model |
 
 ## Cart
