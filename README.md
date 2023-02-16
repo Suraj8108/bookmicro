@@ -178,7 +178,6 @@ GET /book
 ```http
 POST /company
 ```
-
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
 | `/validatePnr` |  `{"checkinDetails":json}` | Return Checkin Details. **Required** - pnrRequest model |
@@ -224,18 +223,162 @@ GET /fare
 | `/getGst/{total}/{Class}` |  `{"GST" : int}` | Return Total GST. **Required** - Fare, Class |
 | `/getTotal/{total}/{seatFare}/{gst}` |  `{"totalFare" : int}` | Return Total Fare. **Required** - Fare, seatFare, GST |
 | `/get/all` | `{"Fare" : json}` | Return List of Fare |
-| `/gettpyes` | `{"categories" : array({_id: product_name, count:1}) }` | Get the all unique types of the product and the count of that type of product |
-| `/` |  `{"File" : json}` | Return All File |
+| `/getAllSeatFares/{fareId}` | `{"Map<SeatNo,Fare>": Map<String,Integer> }` | Get the Seat no and its Price **Required** - fareId |
+| `/listAllSeatFares/{fareId}` |  `{"Fare" : List<Integer>}` | Return all Fare List of seats|
 
 ```http
-POST /file
+POST /fare
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/addfare` |  `{"Fare" : json}` | Add Fare. **Required** - Fare Model |
+| `/getSeatFare` |  `{"Fare" : int}` | Get Fare of a seat. **Required** -  Seat |
+
+```http
+DELETE /fare
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `delete/{id}` |  `{Done}` | Delete Fare Details. **Required** - Id, Fare Model |
+
+```http
+PUT /fare
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `updateFare/{fareId}` |  `{"Fare" : json}` | Update Fare Details. **Required** - Id, Fare Model |
+
+## Flight
+
+```javascript
+File Model
+{ 
+    flightId: {
+        type: Number,
+        required: true
+    },     
+    flightNo: {
+        type: Number,
+        required: true
+    },
+    businessFare : {
+        type : Number, 
+        required : true
+    },
+    economyFare: {
+        type: Number,
+        required: true
+    },
+    flightWeekDays: {
+        type: Set<String>,
+        required: true
+    },
+    route :{
+        type: Route,
+        required: true
+    },
+    flightBooking: {
+        type: List<flightBooking>,
+        required: true
+    }
+}
+
+```
+
+```http
+GET /flight 
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/getAllflights` |  `{"Flight" : List<Flight>}` | Return List of all Flight.|
+| `/getAllRoute` |  `{"Route" : List<Route>}` | Return List of all Route. |
+| `/previousBookFlights` |  `{"msg" : 'Successfully Inserterd Previous Years data'}` | Insert previous year Data. |
+
+```http
+POST /fare
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/addFlight` |  `{"msg" : 'Successfully Added'}` | Add Flight. **Required** - Flight Model |
+
+```http
+PUT /fare
 ```
 
 
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
-| `/addfare` |  `{"Fare" : json}` | Add Fare. **Required** - Fare Model |
-| `/upload` |  `{Done}` | Upload File. **Required** - File model |
+| `/updateFlight` |  `{"Flight" : json}` | Update Flight Details. **Required** - Flight Model |
+
+## FlightBooking
+
+```javascript
+File Model
+{ 
+    id: {
+        type: Number,
+        required: true
+    },     
+    departureDateTime: {
+        type: OffsetDateTime,
+        required: true
+    },
+    arrivalDateTime : {
+        type : OffsetDateTime, 
+        required : true
+    },
+    totalTime: {
+        type: Number,
+        required: true
+    },
+    flight: {
+        type: Flight,
+        required: true
+    },
+    booking :{
+        type: set<Booking>,
+        required: true
+    },
+    checkIn: {
+        type: set<CheckIn>,
+        required: true
+    },
+    fare: {
+        type: Fare,
+        required: true
+    }
+}
+
+```
+
+```http
+GET /flightBooking 
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/getBookableFlights` |  `{"FlightBooking" : List<FlightBooking>}` | Return List of all Bookable Flight.|
+| `/{id}/getAllBookings` |  `{"Booking" : Set<Booking>}` | Return List of all Booking. **Required** - Id |
+| `/getSearchFlightsByDeparture/{departureAirport}` |  `{"departureAirport" : Set<String}` | Return list of all Flights from Airport. **Required** - departureAirport|
+| `/getSearchFlightsByArrival/{arrivalAirport}` |  `{"arrivalAirport" : Set<String}` | Return list of all Flights to Airport. **Required** - arrivalAirport |
+
+```http
+DELETE /flightBooking
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/delete/{id}` |  `{"msg" : 'Bookable Flight Deleted'}` | Delete Flight Details. **Required** - Id |
+
+```http
+POST /flightBooking
+```
+
+
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/updateFlight` |  `{"Flight" : json}` | Update Flight Details. **Required** - Flight Model |
+| `/getFlightsByDepartureDate/{departureDate}` |  `{"FlightBooking" : List<FlightBooking>}` | Get all Flight Details by departure date. **Required** - departureDate |
+
+
 
 ## Cart
 
