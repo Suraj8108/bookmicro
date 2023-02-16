@@ -5,31 +5,53 @@
 http://ec2-3-110-164-119.ap-south-1.compute.amazonaws.com:9900
 ```
 ## Route
-* [User](https://github.com/Abh3201/FlipXoAPI#user)
-* [Company](https://github.com/Abh3201/FlipXoAPI#company)
-* [File](https://github.com/Abh3201/FlipXoAPI#file)
-* [Cart](https://github.com/Abh3201/FlipXoAPI#cart)
-* [Order](https://github.com/Abh3201/FlipXoAPI#order)
-* [Payment](https://github.com/Abh3201/FlipXoAPI#payment)
-* [Sentiment](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [Booking](https://github.com/Abh3201/FlipXoAPI#user)
+* [Checkin](https://github.com/Abh3201/FlipXoAPI#company)
+* [Fare](https://github.com/Abh3201/FlipXoAPI#file)
+* [Flight](https://github.com/Abh3201/FlipXoAPI#cart)
+* [FlightBooking](https://github.com/Abh3201/FlipXoAPI#order)
+* [JwtRequest](https://github.com/Abh3201/FlipXoAPI#payment)
+* [JwtResponse](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [OrderRazorPay](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [Passenger](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [Payment](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [PnrRequest](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [Route](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [UserDetail](https://github.com/Abh3201/FlipXoAPI#sentiment)
 
 
 
-## User
+## UserDetail
 
 ```javascript
 User Model
 { 
-    name: {
+    userId:{
+            type:Number,
+            required: true
+    },
+    firstName: {
         type: String,
         required: true
-    },      
-    email: {
+    },
+    lastName: {
         type: String,
+        required: true
+    },
+    emailId: {
+        type: String,
+        required: true
+    },
+    phoneNumber{
+        type:Number
         required: true
     },
     password: {
         type: String,
+        required: true
+    },
+    loyalty: {
+        type: Number,
         required: true
     }
 }
@@ -41,8 +63,8 @@ GET /user
 ```
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
-| `/` |  `{"success" : bool, "user" : json}` | Return All User |
-| `/:id` |  `{"success" : bool, "user" : json}` | Return user by ID |
+| `/getMyDetails` |  `{"success" : bool, "user" : json}` | Return user details by Token |
+| `/signUp` |  `{"success" : bool, "user" : json}` | Return user by ID |
 
 ```http
 POST /user
@@ -89,7 +111,7 @@ POST /company
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
 | `/register` |  `{"success" : bool, "msg":'company registered'}` | Register company. **Required** - company model |
-| `/authenticate` |  `{"success" : bool, ""token" : "JWT Token", "company" : json}` | Authenticate company. **Required** - email and password in body |
+| `/authenticate` |  `{"success" : bool, "token" : "JWT Token", "company" : json}` | Authenticate company. **Required** - email and password in body |
 
 ## File
 
