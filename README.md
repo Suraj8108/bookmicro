@@ -278,7 +278,7 @@ File Model
         required: true
     },
     flightBooking: {
-        type: List<flightBooking>,
+        type: List<FlightBooking>,
         required: true
     }
 }
