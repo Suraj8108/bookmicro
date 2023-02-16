@@ -5,6 +5,7 @@
 http://ec2-3-110-164-119.ap-south-1.compute.amazonaws.com:9900
 ```
 ## Route
+* [UserDetail](https://github.com/Abh3201/FlipXoAPI#sentiment)
 * [Booking](https://github.com/Abh3201/FlipXoAPI#user)
 * [Checkin](https://github.com/Abh3201/FlipXoAPI#company)
 * [Fare](https://github.com/Abh3201/FlipXoAPI#file)
@@ -17,7 +18,7 @@ http://ec2-3-110-164-119.ap-south-1.compute.amazonaws.com:9900
 * [Payment](https://github.com/Abh3201/FlipXoAPI#sentiment)
 * [PnrRequest](https://github.com/Abh3201/FlipXoAPI#sentiment)
 * [Route](https://github.com/Abh3201/FlipXoAPI#sentiment)
-* [UserDetail](https://github.com/Abh3201/FlipXoAPI#sentiment)
+
 
 
 
@@ -59,37 +60,50 @@ User Model
 ```
 
 ```http
-GET /user
-```
-| Parameter | Return | Description |
-| :--- | :--- | :--- |
-| `/getMyDetails` |  `{"success" : bool, "user" : json}` | Return user details by Token |
-| `/signUp` |  `{"success" : bool, "user" : json}` | Return user by ID |
-
-```http
 POST /user
 ```
-
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
-| `/register` |  `{"success" : bool, "msg":'user registered'}` | Register User. **Required** - user model |
-| `/authenticate` |  `{"success" : bool, ""token" : "JWT Token", "user" : json}` | Authenticate user. **Required** - email and password in body |
+| `/getMyDetails` |  `{"user" : json}` | Return user details.  **Required** - token |
+| `/signUp` |  `{"user" : json}` | Sign up User. **Required** - userDetail model  |
+| `/myCheckinLeft` |  `{"bookDto" : json}` | Return Check-In Details. **Required** - token |
+| `/getMyBookings` |  `{"bookDto" : json}` | Return Booking Details. **Required** - token  |
 
-## Company
+## Booking
 
 ```javascript
-Company Model
+User Model
 { 
-    name: {
-        type: String,
-        required: true
-    },      
-    email: {
+    bokingId:{
+            type:Number,
+            required: true
+    },
+    pnrNo: {
         type: String,
         required: true
     },
-    password: {
+    bookingDate: {
+        type: Date,
+        required: true
+    },
+    seatClass: {
         type: String,
+        required: true
+    },
+    phoneNumber{
+        type:Number
+        required: true
+    },
+    flightBooking: {
+        type: FlightBooking,
+        required: true
+    },
+    payment: {
+        type: Payment,
+        required: true
+    },
+    passenger: {
+        type: List,
         required: true
     }
 }
@@ -97,12 +111,16 @@ Company Model
 ```
 
 ```http
-GET /company
+GET /book
 ```
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
-| `/` |  `{"success" : bool, "company" : json}` | Return All Company |
-| `/:id` |  `{"success" : bool, "company" : json}` | Return company by ID |
+| `/getBook` |  `{"Booking" : json}` | Return all Booking List |
+| `/get/{id}/passengers` |  `{"Passenger" : json}` | Return all Passenger List **Required** - Id |
+| `/get/{id}/paymentDetails` |  `{"Payment" : json}` | Return payment **Required** - Id |
+| `/get/{id}/fligthDetails` |  `{"flightBooking" : json}` | Return Flight details **Required** - Id |
+| `/getFlightByBookId/{bookingId}` |  `{"flightBooking" : json}` | Return Flight Booking details **Required** - Booking ID |
+| `/getAllPassenger` |  `{"Passenger" : json}` | Return all Passenegr List |
 
 ```http
 POST /company
@@ -110,8 +128,63 @@ POST /company
 
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
-| `/register` |  `{"success" : bool, "msg":'company registered'}` | Register company. **Required** - company model |
-| `/authenticate` |  `{"success" : bool, "token" : "JWT Token", "company" : json}` | Authenticate company. **Required** - email and password in body |
+| `/bookFlight` |  `{"Booking":json}` | Book a Flight. **Required** - booking model |
+| `/getByPnr` |  `{"Booking":json}` | Get Booking by PNR No. **Required** - pnr |
+
+```http
+PUT /cart
+```
+| Parameter| Return | Description |
+| :--- | :--- | :---|
+| `/set/{id}/paymentDetails` | `{"Payment":json}` | Get Payment Details. **Required** - Id |
+
+## Checkin
+
+```javascript
+User Model
+{ 
+    checkinId:{
+            type:Number,
+            required: true
+    },
+    booking: {
+        type: Booking,
+        required: true
+    },
+    emailId: {
+        type: String,
+        required: true
+    },
+    flightBooking: {
+        type: FlightBooking,
+        required: true
+    },
+    payment: {
+        type: Payment,
+        required: true
+    }
+}
+
+```
+
+```http
+GET /book
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/getAllCheckIn` |  `{"Checkin" : json}` | Return all Checkin List |
+
+
+```http
+POST /company
+```
+
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/validatePnr` |  `{"checkinDetails":json}` | Return Checkin Details. **Required** - pnrRequest model |
+| `/bookingInfoForScheduler/{departureDate}` |  `{"Booking":json}` | Get Booking Details List **Required** - departureDate |
+| `/addCheckin` |  `{'msg':'Successfully Added Checkin'}` | Add Check-in Details. **Required** - Checkin Model |
+| `/checkInSuccess` |  `{"Checkin":json}` | Return and update Check-in Status. **Required** - Checkin Model |
 
 ## File
 
