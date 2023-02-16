@@ -5,7 +5,7 @@
 http://ec2-3-110-164-119.ap-south-1.compute.amazonaws.com:9900
 ```
 ## Route
-* [UserDetail](https://github.com/Abh3201/FlipXoAPI#sentiment)
+* [UserDetail](https://github.com/Suraj8108/bookmicro#userDetail)
 * [Booking](https://github.com/Abh3201/FlipXoAPI#user)
 * [Checkin](https://github.com/Abh3201/FlipXoAPI#company)
 * [Fare](https://github.com/Abh3201/FlipXoAPI#file)
