@@ -44,7 +44,7 @@ User Model
         required: true
     },
     phoneNumber: {
-        type:Number
+        type:Number,
         required: true
     },
     password: {
@@ -91,7 +91,7 @@ User Model
         required: true
     },
     phoneNumber: {
-        type:Number
+        type:Number,
         required: true
     },
     flightBooking: {
@@ -336,11 +336,11 @@ File Model
         required: true
     },
     booking :{
-        type: set<Booking>,
+        type: Set<Booking>,
         required: true
     },
     checkIn: {
-        type: set<CheckIn>,
+        type: Set<CheckIn>,
         required: true
     },
     fare: {
