@@ -43,7 +43,7 @@ User Model
         type: String,
         required: true
     },
-    phoneNumber{
+    phoneNumber: {
         type:Number
         required: true
     },
@@ -74,7 +74,7 @@ POST /user
 ```javascript
 User Model
 { 
-    bokingId:{
+    bookingId:{
             type:Number,
             required: true
     },
@@ -90,7 +90,7 @@ User Model
         type: String,
         required: true
     },
-    phoneNumber{
+    phoneNumber: {
         type:Number
         required: true
     },
