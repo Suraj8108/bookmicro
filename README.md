@@ -371,14 +371,194 @@ DELETE /flightBooking
 ```http
 POST /flightBooking
 ```
-
-
 | Parameter | Return | Description |
 | :--- | :--- | :--- |
 | `/updateFlight` |  `{"Flight" : json}` | Update Flight Details. **Required** - Flight Model |
 | `/getFlightsByDepartureDate/{departureDate}` |  `{"FlightBooking" : List<FlightBooking>}` | Get all Flight Details by departure date. **Required** - departureDate |
 
+## JwtRequest
 
+```javascript
+File Model
+{ 
+    username: {
+        type: String,
+        required: true
+    },     
+    password: {
+        type: String,
+        required: true
+    }
+```
+
+## JwtResponse
+
+```javascript
+File Model
+{ 
+    token: {
+        type: String,
+        required: true
+    }
+```
+
+## OrderRazorPay
+
+```javascript
+File Model
+{ 
+    amount: {
+        type: Number,
+        required: true
+    },     
+    description: {
+        type: String,
+        required: true
+    }
+
+```http
+POST /order
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/createOrder` |  `{"Order" : String}` | Return Order details. **Required** - OrderRazorPay Model |
+
+## Passeneger
+
+```javascript
+File Model
+{ 
+    passengerId: {
+        type: Number,
+        required: true
+    },     
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName : {
+        type : String, 
+        required : true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    phoneNumber: {
+        type: Number,
+        required: true
+    },
+    emailId :{
+        type: String,
+        required: true
+    },
+    seatNo: {
+        type: String,
+        required: true
+    },
+    booking{
+        type: Booking,
+        required: true
+    }
+}
+
+```
+
+## Payment
+
+```javascript
+File Model
+{ 
+    paymentNo: {
+        type: Number,
+        required: true
+    },     
+    paymentId: {
+        type: String,
+        required: true
+    },
+    paymentOrderId : {
+        type : String, 
+        required : true
+    },
+    razorpaySignature: {
+        type: String,
+        required: true
+    },
+    paymentStatus: {
+        type: String,
+        required: true
+    },
+    paymentDate :{
+        type: Date,
+        required: true
+    },
+    amount: {
+        type: Number,
+        required: true
+    }
+}
+
+```
+
+```http
+GET /payment 
+```
+| Parameter | Return | Description |
+| :--- | :--- | :--- |
+| `/getAllPayments` |  `{"Payment" : List<Payment>}` | Return List of all Payments.|
+
+## PnrRequest
+
+```javascript
+File Model
+{ 
+    pnr: {
+        type: String,
+        required: true
+    },     
+    emailId: {
+        type: String,
+        required: true
+    }
+```
+
+## Route
+
+```javascript
+File Model
+{ 
+    routeId: {
+        type: Number,
+        required: true
+    },     
+    flight: {
+        type: Flight,
+        required: true
+    },
+    departureAirport : {
+        type : String, 
+        required : true
+    },
+    arrivalAirport: {
+        type: String,
+        required: true
+    },
+    deparutreTime: {
+        type: offsetTime,
+        required: true
+    },
+    arrivalTime :{
+        type: offsetTime,
+        required: true
+    },
+    totalDistance: {
+        type: Number,
+        required: true
+    }
+}
+
+```
 
 ## Cart
 
